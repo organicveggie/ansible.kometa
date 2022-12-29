@@ -1,0 +1,13 @@
+---
+- name: "Run common setup plays"
+  import_playbook: "../resources/playbooks/setup.yml"
+
+- name: "Converge execution"
+  hosts: "all"
+  become: true
+
+  vars:
+    pmm_docker_network_create: true
+
+  roles:
+    - "organicveggie.pmm_docker"

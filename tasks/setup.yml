@@ -1,0 +1,12 @@
+---
+- name: "Create Plex Meta Manager data directory"
+  ansible.builtin.file:
+    name: "{{ pmm_docker_data_dir }}"
+    state: "directory"
+    mode: "0770"
+  when: "not pmm_docker_use_volumes"
+
+- name: "Create Plex Meta Manager Docker volume"
+  community.docker.docker_volume:
+    name: "{{ pmm_docker_volume_name }}"
+  when: "pmm_docker_use_volumes"

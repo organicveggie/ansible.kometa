@@ -1,0 +1,12 @@
+---
+- name: "Create Docker network"
+  community.docker.docker_network:
+    name: "{{ pmm_docker_network }}"
+    driver: "{{ pmm_docker_network_driver }}"
+    enable_ipv6: "{{ pmm_docker_network_enable_ipv6 }}"
+    internal: "{{ pmm_docker_network_internal }}"
+    scope: "{{ pmm_docker_network_scope }}"
+    ipam_config:
+      - subnet: "{{ pmm_docker_network_subnet }}"
+        gateway: "{{ pmm_docker_network_gateway }}"
+  when: "pmm_docker_network_create"
