@@ -35,10 +35,10 @@ See [defaults/main.yml](defaults/main.yml) for a complete list.
 
 ```yaml
 # Name of the Docker container.
-pmm_docker_name: "tautulli"
+pmm_docker_name: "plex-meta-manager"
 
 # Base name of the Docker image to use for the container.
-pmm_docker_image_name: "ghcr.io/tautulli/tautulli"
+pmm_docker_image_name: "meisnate12/plex-meta-manager"
 
 # Specific Docker image version to use for the container.
 pmm_docker_image_version: "latest"
@@ -67,12 +67,12 @@ pmm_docker_gid: null
 pmm_docker_use_volumes: true
 
 # Name of the Docker volume to create to store data files. Only used when
-# [tautulli_use_volumes] is true.
-pmm_docker_volume_name: "tautulli"
+# [pmm_docker_use_volumes] is true.
+pmm_docker_volume_name: "plex-meta-manager"
 
 # Directory on filesystem to use for storing data files. Only used when
-# [tautulli_use_volumes] is false.
-pmm_docker_data_dir: "/opt/tautulli"
+# [pmm_docker_use_volumes] is false.
+pmm_docker_data_dir: "/var/lib/plex-meta-manager"
 ```
 
 ### Docker Networks
@@ -81,7 +81,7 @@ pmm_docker_data_dir: "/opt/tautulli"
 # Name of the default Docker network for the container. The container will *always* attach to this
 # network. If [pmm_docker_network_create] is true, this is also the name of the network which
 # will be created.
-pmm_docker_network: "tautulli"
+pmm_docker_network: "plex-meta-manager"
 
 # List of additional networks the container should attach to. Elements should be dictionaries like
 # https://docs.ansible.com/ansible/latest/collections/community/docker/docker_container_module.html#parameter-networks.
@@ -135,7 +135,7 @@ pmm_docker_available_externally: "true"
 
 # Host name to use for the Traefik endpoint. Combined with [pmm_docker_host_domain] to form
 # the FQDN for the endpoint.
-pmm_docker_hostname: "tautulli"
+pmm_docker_hostname: "pmm"
 
 # Domain name to use for the Traefik endpoint. Combined with [pmm_docker_hostname] to form
 # the FQDN for the endpoint. Also used by Traefik to create the necessary Let's Encrypt certificate.
