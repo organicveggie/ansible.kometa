@@ -34,10 +34,6 @@
     _pmm_docker_all_networks: >
       {{ _pmm_docker_created_networks + pmm_docker_extra_networks }}
 
-- name: "Build container FQDN"
-  ansible.builtin.set_fact:
-    _pmm_docker_fqdn: "{{ pmm_docker_hostname }}.{{ pmm_docker_host_domain }}"
-
 - name: "Create Plex Meta Manager Docker container"  # noqa: args[module]
   community.docker.docker_container:
     name: "{{ pmm_docker_name }}"
