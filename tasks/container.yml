@@ -77,6 +77,7 @@
     network_mode: "{{ pmm_docker_network }}"
     networks: "{{ _pmm_docker_all_networks }}"
     restart_policy: unless-stopped
+    restart: "{{ _pmm_docker_config.changed | default(false) }}"
     memory: "{{ pmm_docker_memory }}"
     cpus: "{{ pmm_docker_cpus }}"
     container_default_behavior: "no_defaults"
