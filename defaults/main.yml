@@ -76,7 +76,7 @@ pmm_docker_anidb_password: ""
 # Radarr (Optional)
 pmm_docker_radarr: null
 
-# pmm_docker_radarr: >
+# pmm_docker_radarr: |2
 #   url: http://192.168.1.12:7878
 #   token: ################################
 #   add_missing: false
@@ -93,7 +93,7 @@ pmm_docker_radarr: null
 # Sonarr (Optional)
 pmm_docker_sonarr: null
 
-# pmm_docker_sonarr: >
+# pmm_docker_sonarr: |2
 #   url: http://192.168.1.12:8989
 #   token: ################################
 #   add_missing: false
@@ -113,7 +113,7 @@ pmm_docker_sonarr: null
 # Trakt (Optional)
 pmm_docker_trakt: null
 
-# pmm_docker_trakt: >
+# pmm_docker_trakt: |2
 #   client_id: ##########
 #   client_secret: ##########
 #   pin:
@@ -128,7 +128,7 @@ pmm_docker_trakt: null
 # MyAnimeList (Optional)
 pmm_docker_mal: null
 
-# pmm_docker_mal: >
+# pmm_docker_mal: |2
 #   client_id: ####################
 #   client_secret: ####################
 #   authorization:
