@@ -110,6 +110,33 @@ pmm_docker_sonarr: null
 #   sonarr_path: /media/sonarr
 #   plex_path: /var/lib/plex/media/tv
 
+# Trakt (Optional)
+pmm_docker_trakt: null
+
+# pmm_docker_trakt: >
+#   client_id: ##########
+#   client_secret: ##########
+#   pin:
+#   authorization:
+#     access_token:
+#     token_type:
+#     expires_in:
+#     refresh_token:
+#     scope:
+#     created_at:
+
+# MyAnimeList (Optional)
+pmm_docker_mal: null
+
+# pmm_docker_mal: >
+#   client_id: ####################
+#   client_secret: ####################
+#   authorization:
+#     # everything below is autofilled by the script
+#     access_token:
+#     token_type:
+#     expires_in:
+#     refresh_token:
 
 #####
 # Container settings
