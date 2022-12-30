@@ -89,40 +89,31 @@ mdblist:
   cache_expiration: {{ pmm_docker_mdblist_cache_expiration }}
 {% endif %}
 
-# notifiarr:
-#   apikey: ####################################
-# anidb:                           # Not required for AniDB builders unless you want mature content
-#   username: ######
-#   password: ######
-# radarr:                          # Can be individually specified per library as well
-#   url: http://192.168.1.12:7878
-#   token: ################################
-#   add_missing: false
-#   add_existing: false
-#   root_folder_path: S:/Movies
-#   monitor: true
-#   availability: announced
-#   quality_profile: HD-1080p
-#   tag:
-#   search: false
-#   radarr_path:
-#   plex_path:
-# sonarr:                          # Can be individually specified per library as well
-#   url: http://192.168.1.12:8989
-#   token: ################################
-#   add_missing: false
-#   add_existing: false
-#   root_folder_path: "S:/TV Shows"
-#   monitor: all
-#   quality_profile: HD-1080p
-#   language_profile: English
-#   series_type: standard
-#   season_folder: true
-#   tag:
-#   search: false
-#   cutoff_search: false
-#   sonarr_path:
-#   plex_path:
+{% if pmm_docker_notifiarr_apikey %}
+notifiarr:
+  apikey: {{ pmm_docker_notifiarr_apikey }}
+{% endif %}
+
+{% if pmm_docker_anidb_client %}
+anidb:
+  client: {{ pmm_docker_anidb_client }}
+  version: {{ pmm_docker_anidb_version }}
+  language: {{ pmm_docker_anidb_language }}
+  cache_expiration: {{ pmm_docker_anidb_cache_expiration }}
+  username: {{ pmm_docker_anidb_username }}
+  password: {{ pmm_docker_anidb_password }}
+{% endif %}
+
+{% if pmm_docker_radarr %}
+radarr:
+  {{ pmm_docker_radarr }}
+{% endif %}
+
+{% if pmm_docker_sonarr %}
+sonarr:
+  {{ pmm_docker_sonarr }}
+{% endif %}
+
 # trakt:
 #   client_id: ####################
 #   client_secret: ####################

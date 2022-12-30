@@ -50,17 +50,66 @@ pmm_docker_tmdb_language: "en"
 pmm_docker_tmdb_region: "US"
 pmm_docker_tmdb_cache_expiration: "60"
 
-# Optional
+# Tautulli (Optional)
 pmm_docker_tautulli_url: null  # e.g. http://192.168.1.12:8181
 pmm_docker_tautulli_apikey: null
 
-# Optional
+# Omdb (Optional)
 pmm_docker_omdb_apikey: null
 pmm_docker_omdb_cache_expiration: "60"
 
-# Optional
+# mdblist (Optional)
 pmm_docker_mdblist_apikey: null
 pmm_docker_mdblist_cache_expiration: "60"
+
+# Notifiarr (Optional)
+pmm_docker_notifiarr_apikey: null
+
+# AniDB (Optional)
+pmm_docker_anidb_client: null
+pmm_docker_anidb_version: "1"
+pmm_docker_anidb_language: "en"
+pmm_docker_anidb_cache_expiration: "60"
+pmm_docker_anidb_username: ""
+pmm_docker_anidb_password: ""
+
+# Radarr (Optional)
+pmm_docker_radarr: null
+
+# pmm_docker_radarr: >
+#   url: http://192.168.1.12:7878
+#   token: ################################
+#   add_missing: false
+#   add_existing: false
+#   root_folder_path: /media/videos/movies
+#   monitor: true
+#   availability: announced
+#   quality_profile: HD-1080p
+#   tag:
+#   search: false
+#   radarr_path: /media/radarr
+#   plex_path: /var/lib/plex/media/movies
+
+# Sonarr (Optional)
+pmm_docker_sonarr: null
+
+# pmm_docker_sonarr: >
+#   url: http://192.168.1.12:8989
+#   token: ################################
+#   add_missing: false
+#   add_existing: false
+#   root_folder_path: "/media/videos/tv"
+#   monitor: all
+#   quality_profile: HD-1080p
+#   language_profile: English
+#   series_type: standard
+#   season_folder: true
+#   tag:
+#   search: false
+#   cutoff_search: false
+#   sonarr_path: /media/sonarr
+#   plex_path: /var/lib/plex/media/tv
+
 
 #####
 # Container settings
