@@ -28,6 +28,12 @@
   ansible.builtin.set_fact:
     fact_pmm_docker_conf_folder: "{{ pmm_docker_data_dir }}"
 
+- name: "Create assets subfolder"
+  ansible.builtin.file:
+    name: "{{ fact_pmm_docker_conf_folder }}/assets"
+    state: "directory"
+    mode: "0770"
+
 - name: "Create config file"
   ansible.builtin.template:
     src: "templates/config.yml.j2"
