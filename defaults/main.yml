@@ -47,7 +47,7 @@ pmm_docker_plex_optimize: false
 # Required
 pmm_docker_tmdb_apikey: null
 pmm_docker_tmdb_language: "en"
-pmm_docker_tmdb_region: "US"
+pmm_docker_tmdb_region: "us"
 pmm_docker_tmdb_cache_expiration: "60"
 
 # Tautulli (Optional)
@@ -117,13 +117,6 @@ pmm_docker_trakt: null
 #   client_id: ##########
 #   client_secret: ##########
 #   pin:
-#   authorization:
-#     access_token:
-#     token_type:
-#     expires_in:
-#     refresh_token:
-#     scope:
-#     created_at:
 
 # MyAnimeList (Optional)
 pmm_docker_mal: null
