@@ -16,7 +16,6 @@ An [Ansible](https://www.ansible.com/) role to setup and run the
   - [Container Settings](#container-settings)
   - [Docker volumes and folders](#docker-volumes-and-folders)
   - [Docker Networks](#docker-networks)
-  - [Traefik Proxy](#traefik-proxy)
 - [Dependencies](#dependencies)
 - [Example Playbooks](#example-playbooks)
 - [License](#license)
@@ -125,21 +124,6 @@ pmm_docker_network_subnet: "172.1.1.0/24"
 # IPv4 gateway for the default network. Only used when [pmm_docker_network_create] is
 # enabled.
 pmm_docker_network_gateway: "172.1.1.1"
-```
-
-### Traefik Proxy
-
-```yaml
-# Enable use of Traefik as a proxy.
-pmm_docker_available_externally: "true"
-
-# Host name to use for the Traefik endpoint. Combined with [pmm_docker_host_domain] to form
-# the FQDN for the endpoint.
-pmm_docker_hostname: "pmm"
-
-# Domain name to use for the Traefik endpoint. Combined with [pmm_docker_hostname] to form
-# the FQDN for the endpoint. Also used by Traefik to create the necessary Let's Encrypt certificate.
-pmm_docker_host_domain: "example.com"
 ```
 
 ## Dependencies
