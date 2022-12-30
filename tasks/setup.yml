@@ -30,6 +30,7 @@
 
 - name: "Create config file"
   ansible.builtin.template:
-    src: "../templates/config.yml.j2"
+    src: "templates/config.yml.j2"
     dest: "{{ fact_pmm_docker_conf_folder }}/config.yml"
+    mode: "0644"
   register: _pmm_docker_config
