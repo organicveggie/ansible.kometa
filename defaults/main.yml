@@ -10,7 +10,7 @@ pmm_docker_timezone: "America/New_York"
 #####
 # Config settings
 #####
-pmm_docker_libraries: >
+pmm_docker_libraries: |2
     Movies:
       metadata_path:
         - pmm: "basic"
