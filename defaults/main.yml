@@ -11,27 +11,27 @@ pmm_docker_timezone: "America/New_York"
 # Config settings
 #####
 pmm_docker_libraries: >
-  Movies:
-    metadata_path:
-      - pmm: "basic"
-      - pmm: "imdb"
-    overlay_path:
-      - remove_overlays: false
-      - pmm: "ribbon"
-  TV Shows:
-    metadata_path:
-      - pmm: "basic"
-      - pmm: "imdb"
-    overlay_path:
-      - remove_overlays: false
-      - pmm: "ribbon"
-  Anime:
-    metadata_path:
-      - pmm: "basic"
-      - pmm: "anilist"
-  Music:
-    metadata_path:
-      - file: "config/Music.yml"
+    Movies:
+      metadata_path:
+        - pmm: "basic"
+        - pmm: "imdb"
+      overlay_path:
+        - remove_overlays: false
+        - pmm: "ribbon"
+    TV Shows:
+      metadata_path:
+        - pmm: "basic"
+        - pmm: "imdb"
+      overlay_path:
+        - remove_overlays: false
+        - pmm: "ribbon"
+    Anime:
+      metadata_path:
+        - pmm: "basic"
+        - pmm: "anilist"
+    Music:
+      metadata_path:
+        - file: "config/Music.yml"
 
 pmm_docker_playlist_files:
   - "pmm: playlist"

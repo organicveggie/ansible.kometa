@@ -1,6 +1,6 @@
 ---
 libraries:
-  {{ pmm_docker_libraries }}
+{{ pmm_docker_libraries }}
 
 {%- if pmm_docker_playlist_files %}
 playlist_files:
@@ -71,30 +71,30 @@ webhooks:
   run_end:
   changes:
 
-{%- if pmm_docker_tautulli_url %}
+{% if pmm_docker_tautulli_url %}
 tautulli:
   url: {{ pmm_docker_tautulli_url | default(omit) }}
   apikey: {{ pmm_docker_tautulli_apikey | default(omit) }}
 {% endif %}
 
-{%- if pmm_docker_omdb_apikey %}
+{% if pmm_docker_omdb_apikey %}
 omdb:
   apikey: {{ pmm_docker_omdb_apikey }}
   cache_expiration: {{ pmm_docker_omdb_cache_expiration }}
 {% endif %}
 
-{%- if pmm_docker_mdblist_apikey %}
+{% if pmm_docker_mdblist_apikey %}
 mdblist:
   apikey: {{ pmm_docker_mdblist_apikey }}
   cache_expiration: {{ pmm_docker_mdblist_cache_expiration }}
 {% endif %}
 
-{%- if pmm_docker_notifiarr_apikey %}
+{% if pmm_docker_notifiarr_apikey %}
 notifiarr:
   apikey: {{ pmm_docker_notifiarr_apikey }}
 {% endif %}
 
-{%- if pmm_docker_anidb_client %}
+{% if pmm_docker_anidb_client %}
 anidb:
   client: {{ pmm_docker_anidb_client }}
   version: {{ pmm_docker_anidb_version }}
@@ -104,22 +104,22 @@ anidb:
   password: {{ pmm_docker_anidb_password }}
 {% endif %}
 
-{%- if pmm_docker_radarr %}
+{% if pmm_docker_radarr %}
 radarr:
   {{ pmm_docker_radarr }}
 {% endif %}
 
-{%- if pmm_docker_sonarr %}
+{% if pmm_docker_sonarr %}
 sonarr:
   {{ pmm_docker_sonarr }}
 {% endif %}
 
-{%- if pmm_docker_trakt %}
+{% if pmm_docker_trakt %}
 trakt:
   {{ pmm_docker_trakt }}
 {% endif %}
 
-{%- if pmm_docker_mal %}
+{% if pmm_docker_mal %}
 mal:
   {{ pmm_docker_mal }}
 {% endif %}

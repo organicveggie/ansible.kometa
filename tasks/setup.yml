@@ -33,7 +33,3 @@
     src: "../templates/config.yml.j2"
     dest: "{{ fact_pmm_docker_conf_folder }}/config.yml"
   register: _pmm_docker_config
-
-- name: "Config file modified"
-  ansible.builtin.debug:
-    msg: "{{ _pmm_docker_config }}"
