@@ -1,12 +1,34 @@
 ---
 - name: "Create Plex Meta Manager data directory"
+  when: "not pmm_docker_use_volumes"
   ansible.builtin.file:
     name: "{{ pmm_docker_data_dir }}"
     state: "directory"
     mode: "0770"
-  when: "not pmm_docker_use_volumes"
 
 - name: "Create Plex Meta Manager Docker volume"
+  when: "pmm_docker_use_volumes"
   community.docker.docker_volume:
     name: "{{ pmm_docker_volume_name }}"
+
+- name: "Get info on Docker volume"
   when: "pmm_docker_use_volumes"
+  community.docker.docker_volume_info:
+    name: "{{ pmm_docker_volume_name }}"
+  register: "pmm_docker_volume_info"
+
+- name: "Build target path to Docker volume"
+  when: "pmm_docker_use_volumes"
+  ansible.builtin.set_fact:
+    fact_pmm_docker_conf_folder:
+      "{{ pmm_docker_volume_info['volume']['Mountpoint'] }}"
+
+- name: "Build target path to conf folder for bind mount"
+  when: "not pmm_docker_use_volumes"
+  ansible.builtin.set_fact:
+    fact_pmm_docker_conf_folder: "{{ pmm_docker_data_dir }}"
+
+- name: "Create config file"
+  ansible.builtin.template:
+    src: "../templates/config.yml.j2"
+    dest: "{{ fact_pmm_docker_conf_folder }}/config.yml"

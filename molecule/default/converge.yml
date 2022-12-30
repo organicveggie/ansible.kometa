@@ -8,6 +8,11 @@
 
   vars:
     pmm_docker_network_create: true
+    pmm_docker_plex_url: "http://192.168.1.12:32400"
+    pmm_docker_plex_token: "fake-plex-token"
+    pmm_docker_tautulli_url: "http://192.168.1.12:8181"
+    pmm_docker_tautulli_apikey: "fake-tautulli-apikey"
+    pmm_docker_tmdb_apikey: "fake-tmdb-apikey"
 
   roles:
     - "organicveggie.pmm_docker"

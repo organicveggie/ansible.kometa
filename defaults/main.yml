@@ -8,6 +8,61 @@
 pmm_docker_timezone: "America/New_York"
 
 #####
+# Config settings
+#####
+pmm_docker_libraries: >
+  Movies:
+    metadata_path:
+      - pmm: "basic"
+      - pmm: "imdb"
+    overlay_path:
+      - remove_overlays: false
+      - pmm: "ribbon"
+  TV Shows:
+    metadata_path:
+      - pmm: "basic"
+      - pmm: "imdb"
+    overlay_path:
+      - remove_overlays: false
+      - pmm: "ribbon"
+  Anime:
+    metadata_path:
+      - pmm: "basic"
+      - pmm: "anilist"
+  Music:
+    metadata_path:
+      - file: "config/Music.yml"
+
+pmm_docker_playlist_files:
+  - "pmm: playlist"
+
+# Required
+pmm_docker_plex_url: "http://192.168.1.2:32400"
+pmm_docker_plex_token: null
+pmm_docker_plex_timeout: "60"
+pmm_docker_plex_clean_bundles: true
+pmm_docker_plex_empty_trash: true
+pmm_docker_plex_optimize: false
+
+# Required
+pmm_docker_tmdb_apikey: null
+pmm_docker_tmdb_language: "en"
+pmm_docker_tmdb_region: "US"
+pmm_docker_tmdb_cache_expiration: "60"
+
+# Optional
+pmm_docker_tautulli_url: null  # e.g. http://192.168.1.12:8181
+pmm_docker_tautulli_apikey: null
+
+# Optional
+pmm_docker_omdb_apikey: null
+pmm_docker_omdb_cache_expiration: "60"
+
+# Optional
+pmm_docker_mdblist_apikey: null
+pmm_docker_mdblist_cache_expiration: "60"
+
+#####
 # Container settings
 #####
 

@@ -1,34 +1,14 @@
 ---
-libraries:                       # This is called out once within the config.yml file
-  Movies:                        # These are names of libraries in your Plex
-    metadata_path:
-      - pmm: basic               # This is a file within PMM's defaults folder
-      - pmm: imdb                # This is a file within PMM's defaults folder
-      # see the wiki for how to use local files, folders, URLs, or files from git
-    overlay_path:
-      - remove_overlays: false   # Set this to true to remove all overlays
-      - pmm: ribbon              # This is a file within PMM's defaults folder
-      # see the wiki for how to use local files, folders, URLs, or files from git
-  TV Shows:
-    metadata_path:
-      - pmm: basic               # This is a file within PMM's defaults folder
-      - pmm: imdb                # This is a file within PMM's defaults folder
-      # see the wiki for how to use local files, folders, URLs, or files from git
-    overlay_path:
-      - remove_overlays: false   # Set this to true to remove all overlays
-      - pmm: ribbon              # This is a file within PMM's defaults folder
-      # see the wiki for how to use local files, folders, URLs, or files from git
-  Anime:
-    metadata_path:
-      - pmm: basic               # This is a file within PMM's defaults folder
-      - pmm: anilist             # This is a file within PMM's defaults folder
-      # see the wiki for how to use local files, folders, URLs, or files from git
-  Music:
-    metadata_path:
-      - file: config/Music.yml   # This is a local file THAT YOU MIGHT CREATE
+libraries:
+  {{ pmm_docker_libraries }}
+
+{%- if pmm_docker_playlist_files %}
 playlist_files:
-  - pmm: playlist                # This is a file within PMM's defaults folder
-  # see the wiki for how to use local files, folders, URLs, or files from git
+{% for pf in pmm_docker_playlist_files %}
+  - {{ pf }}
+{% endfor %}
+{% endif %}
+
 settings:
   cache: true
   cache_expiration: 60
@@ -66,83 +46,101 @@ settings:
   verify_ssl: true
   custom_repo:
   check_nightly: false
-webhooks:                        # Can be individually specified per library as well
+
+# Optional
+webhooks:
   error:
   version:
   run_start:
   run_end:
   changes:
-plex:                            # Can be individually specified per library as well; REQUIRED for the script to run
-  url: http://192.168.1.12:32400
-  token: ####################
-  timeout: 60
-  clean_bundles: false
-  empty_trash: false
-  optimize: false
-tmdb:                            # REQUIRED for the script to run
-  apikey: ################################
-  language: en
-tautulli:                        # Can be individually specified per library as well
-  url: http://192.168.1.12:8181
-  apikey: ################################
+
+# Required
+plex:
+  url: {{ pmm_docker_plex_url }}
+  token: {{ pmm_docker_plex_token }}
+  timeout: {{ pmm_docker_plex_timeout }}
+  clean_bundles: {{ pmm_docker_plex_clean_bundles }}
+  empty_trash: {{ pmm_docker_plex_empty_trash }}
+  optimize: {{ pmm_docker_plex_optimize }}
+
+# Required
+tmdb:
+  apikey: {{ pmm_docker_tmdb_apikey }}
+  language: {{ pmm_docker_tmdb_language }}
+  region: {{ pmm_docker_tmdb_region }}
+  cache_expiration: {{ pmm_docker_tmdb_cache_expiration }}
+
+{% if pmm_docker_tautulli_url %}
+tautulli:
+  url: {{ pmm_docker_tautulli_url | default(omit) }}
+  apikey: {{ pmm_docker_tautulli_apikey | default(omit) }}
+{% endif %}
+
+{% if pmm_docker_omdb_apikey %}
 omdb:
-  apikey: ########
-  cache_expiration: 60
+  apikey: {{ pmm_docker_omdb_apikey }}
+  cache_expiration: {{ pmm_docker_omdb_cache_expiration }}
+{% endif %}
+
+{% if pmm_docker_mdblist_apikey %}
 mdblist:
-  apikey: #########################
-  cache_expiration: 60
-notifiarr:
-  apikey: ####################################
-anidb:                           # Not required for AniDB builders unless you want mature content
-  username: ######
-  password: ######
-radarr:                          # Can be individually specified per library as well
-  url: http://192.168.1.12:7878
-  token: ################################
-  add_missing: false
-  add_existing: false
-  root_folder_path: S:/Movies
-  monitor: true
-  availability: announced
-  quality_profile: HD-1080p
-  tag:
-  search: false
-  radarr_path:
-  plex_path:
-sonarr:                          # Can be individually specified per library as well
-  url: http://192.168.1.12:8989
-  token: ################################
-  add_missing: false
-  add_existing: false
-  root_folder_path: "S:/TV Shows"
-  monitor: all
-  quality_profile: HD-1080p
-  language_profile: English
-  series_type: standard
-  season_folder: true
-  tag:
-  search: false
-  cutoff_search: false
-  sonarr_path:
-  plex_path:
-trakt:
-  client_id: ####################
-  client_secret: ####################
-  pin:
-  authorization:
-    # everything below is autofilled by the script
-    access_token:
-    token_type:
-    expires_in:
-    refresh_token:
-    scope: public
-    created_at:
-mal:
-  client_id: ####################
-  client_secret: ####################
-  authorization:
-    # everything below is autofilled by the script
-    access_token:
-    token_type:
-    expires_in:
-    refresh_token:
+  apikey: {{ pmm_docker_mdblist_apikey }}
+  cache_expiration: {{ pmm_docker_mdblist_cache_expiration }}
+{% endif %}
+
+# notifiarr:
+#   apikey: ####################################
+# anidb:                           # Not required for AniDB builders unless you want mature content
+#   username: ######
+#   password: ######
+# radarr:                          # Can be individually specified per library as well
+#   url: http://192.168.1.12:7878
+#   token: ################################
+#   add_missing: false
+#   add_existing: false
+#   root_folder_path: S:/Movies
+#   monitor: true
+#   availability: announced
+#   quality_profile: HD-1080p
+#   tag:
+#   search: false
+#   radarr_path:
+#   plex_path:
+# sonarr:                          # Can be individually specified per library as well
+#   url: http://192.168.1.12:8989
+#   token: ################################
+#   add_missing: false
+#   add_existing: false
+#   root_folder_path: "S:/TV Shows"
+#   monitor: all
+#   quality_profile: HD-1080p
+#   language_profile: English
+#   series_type: standard
+#   season_folder: true
+#   tag:
+#   search: false
+#   cutoff_search: false
+#   sonarr_path:
+#   plex_path:
+# trakt:
+#   client_id: ####################
+#   client_secret: ####################
+#   pin:
+#   authorization:
+#     # everything below is autofilled by the script
+#     access_token:
+#     token_type:
+#     expires_in:
+#     refresh_token:
+#     scope: public
+#     created_at:
+# mal:
+#   client_id: ####################
+#   client_secret: ####################
+#   authorization:
+#     # everything below is autofilled by the script
+#     access_token:
+#     token_type:
+#     expires_in:
+#     refresh_token:
