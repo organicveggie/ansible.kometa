@@ -166,7 +166,7 @@ pmm_docker_restart_policy: "unless-stopped"
 pmm_docker_run_command: null
 
 # Prevent Plex Meta Manager from modifying the config.yml.
-pmm_docker_config_read_only: true
+pmm_docker_config_read_only: null
 
 #####
 # Docker networks
