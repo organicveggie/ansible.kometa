@@ -51,6 +51,7 @@
     memory: "{{ pmm_docker_memory }}"
     cpus: "{{ pmm_docker_cpus }}"
     command: "{{ pmm_docker_run_command | default (omit) }}"
+    command_handling: "correct"
     container_default_behavior: "no_defaults"
     auto_remove: false
     detach: true
