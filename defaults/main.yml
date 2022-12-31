@@ -157,6 +157,9 @@ pmm_docker_memory: "512M"
 # Override DNS servers.
 pmm_docker_dns_servers: null
 
+# Prevent Plex Meta Manager from modifying the config.yml.
+pmm_docker_config_read_only: true
+
 #####
 # Docker networks
 #####
