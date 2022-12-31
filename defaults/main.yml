@@ -154,6 +154,9 @@ pmm_docker_cpus: "1"
 # Amount of memory to allocate to the container.
 pmm_docker_memory: "512M"
 
+# Override DNS servers.
+pmm_docker_dns_servers: null
+
 #####
 # Docker networks
 #####

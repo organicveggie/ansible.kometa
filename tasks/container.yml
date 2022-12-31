@@ -40,6 +40,7 @@
     image: "{{ pmm_docker_image_name }}:{{ pmm_docker_image_version }}"
     pull: true
     mounts: "{{ _pmm_docker_mount_list }}"
+    dns: "{{ pmm_docker_dns_servers | default(omit) }}"
     env:
       "TZ": "{{ pmm_docker_timezone }}"
     network_mode: "{{ pmm_docker_network }}"
