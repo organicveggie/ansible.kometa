@@ -111,12 +111,13 @@ pmm_docker_sonarr: null
 #   plex_path: /var/lib/plex/media/tv
 
 # Trakt (Optional)
+# See https://replit.com/@chazlarson/TraktAuth to generate the auth data.
 pmm_docker_trakt: null
 
 # pmm_docker_trakt: |2
 #   client_id: ##########
 #   client_secret: ##########
-#   pin:
+#   pin: 
 
 # MyAnimeList (Optional)
 pmm_docker_mal: null
