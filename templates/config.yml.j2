@@ -55,6 +55,9 @@ plex:
   clean_bundles: {{ pmm_docker_plex_clean_bundles }}
   empty_trash: {{ pmm_docker_plex_empty_trash }}
   optimize: {{ pmm_docker_plex_optimize }}
+{% if pmm_docker_plex_db_cache %}
+  db_cache: {{ pmm_docker_plex_db_cache }}
+{% endif %}
 
 {# Required #}
 tmdb:

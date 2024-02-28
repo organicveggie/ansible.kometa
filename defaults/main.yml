@@ -44,6 +44,9 @@ pmm_docker_plex_clean_bundles: true
 pmm_docker_plex_empty_trash: true
 pmm_docker_plex_optimize: false
 
+# Optional. Default is something absurd like 40MB.
+pmm_docker_plex_db_cache: null
+
 # Required
 pmm_docker_tmdb_apikey: null
 pmm_docker_tmdb_language: "en"
