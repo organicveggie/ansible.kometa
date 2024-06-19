@@ -41,7 +41,10 @@ jobs:
         run: >
           ansible-galaxy role install --role-file molecule/resources/requirements.yml
 
-      - name: "Run linters"
+      - name: "Run yamllint"
         run: |
           yamllint -c .yamllint -f github -s .
+
+      - name: "Run ansible-lint"
+        run: |
           ansible-lint
