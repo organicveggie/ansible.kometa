@@ -12,12 +12,12 @@ on:
   schedule:
     - cron: "0 6 * * 0"
 
-env:
-  PROJECT_DIRECTORY: "organicveggie.kometa"
+# env:
+#   PROJECT_DIRECTORY: "organicveggie.kometa"
 
-defaults:
-  run:
-    working-directory: "organicveggie.kometa"
+# defaults:
+#   run:
+#     working-directory: "organicveggie.kometa"
 
 jobs:
   lint:
@@ -25,12 +25,10 @@ jobs:
     runs-on: "ubuntu-22.04"
     steps:
       - name: "Check out the codebase."
-        uses: "actions/checkout@v3"
-        with:
-          path: "$PROJECT_DIRECTORY"
+        uses: "actions/checkout@v4"
 
       - name: "Set up Python 3."
-        uses: "actions/setup-python@v4"
+        uses: "actions/setup-python@v5"
         with:
           python-version: "3.x"
 
