@@ -47,4 +47,6 @@ jobs:
 
       - name: "Run ansible-lint"
         run: |
+          echo PROJECT_DIRECTORY = $PROJECT_DIRECTORY
+          echo Current dir = `pwd`
           ansible-lint
