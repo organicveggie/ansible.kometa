@@ -18,8 +18,11 @@ rules:
   commas:
     level: "error"
     max-spaces-after: -1
-  comments: "enable"
-  comments-indentation: "enable"
+  comments:
+    # https://github.com/prettier/prettier/issues/6780
+    min-spaces-from-content: 1 # prettier compatibility
+  # https://github.com/adrienverge/yamllint/issues/384
+  comments-indentation: "disable"
   document-end: "disable"
   document-start:
     present: true
