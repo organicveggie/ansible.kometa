@@ -12,13 +12,6 @@ on:
   schedule:
     - cron: "0 6 * * 0"
 
-# env:
-#   PROJECT_DIRECTORY: "organicveggie.kometa"
-
-# defaults:
-#   run:
-#     working-directory: "organicveggie.kometa"
-
 jobs:
   lint:
     name: "Lint"
