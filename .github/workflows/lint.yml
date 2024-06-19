@@ -17,7 +17,7 @@ env:
 
 defaults:
   run:
-    working-directory: "$PROJECT_DIRECTORY"
+    working-directory: "organicveggie.kometa"
 
 jobs:
   lint:
@@ -47,6 +47,4 @@ jobs:
 
       - name: "Run ansible-lint"
         run: |
-          echo PROJECT_DIRECTORY = $PROJECT_DIRECTORY
-          echo Current dir = `pwd`
           ansible-lint
