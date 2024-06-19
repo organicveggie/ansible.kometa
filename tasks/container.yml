@@ -1,56 +1,56 @@
 ---
 - name: "Set Docker volume list for bind mounts"
   ansible.builtin.set_fact:
-    _pmm_docker_mount_list:
-      - source: "{{ pmm_docker_data_dir }}"
+    _kometa_docker_mount_list:
+      - source: "{{ kometa_docker_data_dir }}"
         target: "/config"
         type: "bind"
-  when: "not pmm_docker_use_volumes"
+  when: "not kometa_docker_use_volumes"
 
 - name: "Set Docker mount list for volume mounts"
   ansible.builtin.set_fact:
-    _pmm_docker_mount_list:
-      - source: "{{ pmm_docker_volume_name }}"
+    _kometa_docker_mount_list:
+      - source: "{{ kometa_docker_volume_name }}"
         target: "/config"
         type: "volume"
-  when: "pmm_docker_use_volumes"
+  when: "kometa_docker_use_volumes"
 
 - name: "Convert created network into array of dictionary"
   ansible.builtin.set_fact:
-    _pmm_docker_created_networks:
-      - name: "{{ pmm_docker_network }}"
-        ipv4_address: "{{ _pmm_docker_network_ipv4 | default(omit) }}"
-        ipv6_address: "{{ _pmm_docker_network_ipv6 | default(omit) }}"
-        aliases: "{{ _pmm_docker_network_aliases | default(omit) }}"
-  when: "pmm_docker_network_create"
+    _kometa_docker_created_networks:
+      - name: "{{ kometa_docker_network }}"
+        ipv4_address: "{{ _kometa_docker_network_ipv4 | default(omit) }}"
+        ipv6_address: "{{ _kometa_docker_network_ipv6 | default(omit) }}"
+        aliases: "{{ _kometa_docker_network_aliases | default(omit) }}"
+  when: "kometa_docker_network_create"
 
 - name: "Create placeholder array for created network"
   ansible.builtin.set_fact:
-    _pmm_docker_created_networks: []
-  when: "not pmm_docker_network_create"
+    _kometa_docker_created_networks: []
+  when: "not kometa_docker_network_create"
 
 - name: "Define all Docker networks for this container"
   ansible.builtin.set_fact:
-    _pmm_docker_all_networks: >
-      {{ _pmm_docker_created_networks + pmm_docker_extra_networks }}
+    _kometa_docker_all_networks: >
+      {{ _kometa_docker_created_networks + kometa_docker_extra_networks }}
 
-- name: "Create Plex Meta Manager Docker container"  # noqa: args[module]
+- name: "Create Kometa Docker container"  # noqa: args[module]
   community.docker.docker_container:
-    name: "{{ pmm_docker_name }}"
-    image: "{{ pmm_docker_image_name }}:{{ pmm_docker_image_version }}"
+    name: "{{ kometa_docker_name }}"
+    image: "{{ kometa_docker_image_name }}:{{ kometa_docker_image_version }}"
     pull: true
-    mounts: "{{ _pmm_docker_mount_list }}"
-    dns_servers: "{{ pmm_docker_dns_servers | default(omit) }}"
+    mounts: "{{ _kometa_docker_mount_list }}"
+    dns_servers: "{{ kometa_docker_dns_servers | default(omit) }}"
     env:
-      "PMM_READ_ONLY_CONFIG": "{{ pmm_docker_config_read_only | default(omit) }}"
-      "TZ": "{{ pmm_docker_timezone }}"
-    network_mode: "{{ pmm_docker_network }}"
-    networks: "{{ _pmm_docker_all_networks }}"
+      "KOMETA_READ_ONLY_CONFIG": "{{ kometa_docker_config_read_only | default(omit) }}"
+      "TZ": "{{ kometa_docker_timezone }}"
+    network_mode: "{{ kometa_docker_network }}"
+    networks: "{{ _kometa_docker_all_networks }}"
     restart_policy: unless-stopped
-    restart: "{{ _pmm_docker_config.changed | default(false) }}"
-    memory: "{{ pmm_docker_memory }}"
-    cpus: "{{ pmm_docker_cpus }}"
-    command: "{{ pmm_docker_run_command | default (omit) }}"
+    restart: "{{ _kometa_docker_config.changed | default(false) }}"
+    memory: "{{ kometa_docker_memory }}"
+    cpus: "{{ kometa_docker_cpus }}"
+    command: "{{ kometa_docker_run_command | default(omit) }}"
     command_handling: "correct"
     container_default_behavior: "no_defaults"
     auto_remove: false

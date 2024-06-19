@@ -1,10 +1,10 @@
 ---
 libraries:
-{{ pmm_docker_libraries }}
+{{ kometa_docker_libraries }}
 
-{%- if pmm_docker_playlist_files %}
+{%- if kometa_docker_playlist_files %}
 playlist_files:
-{% for pf in pmm_docker_playlist_files %}
+{% for pf in kometa_docker_playlist_files %}
   - {{ pf }}
 {% endfor %}
 {% endif %}
@@ -49,22 +49,22 @@ settings:
 
 {# Required #}
 plex:
-  url: {{ pmm_docker_plex_url }}
-  token: {{ pmm_docker_plex_token }}
-  timeout: {{ pmm_docker_plex_timeout }}
-  clean_bundles: {{ pmm_docker_plex_clean_bundles }}
-  empty_trash: {{ pmm_docker_plex_empty_trash }}
-  optimize: {{ pmm_docker_plex_optimize }}
-{% if pmm_docker_plex_db_cache %}
-  db_cache: {{ pmm_docker_plex_db_cache }}
+  url: {{ kometa_docker_plex_url }}
+  token: {{ kometa_docker_plex_token }}
+  timeout: {{ kometa_docker_plex_timeout }}
+  clean_bundles: {{ kometa_docker_plex_clean_bundles }}
+  empty_trash: {{ kometa_docker_plex_empty_trash }}
+  optimize: {{ kometa_docker_plex_optimize }}
+{% if kometa_docker_plex_db_cache %}
+  db_cache: {{ kometa_docker_plex_db_cache }}
 {% endif %}
 
 {# Required #}
 tmdb:
-  apikey: {{ pmm_docker_tmdb_apikey }}
-  language: {{ pmm_docker_tmdb_language }}
-  region: {{ pmm_docker_tmdb_region }}
-  cache_expiration: {{ pmm_docker_tmdb_cache_expiration }}
+  apikey: {{ kometa_docker_tmdb_apikey }}
+  language: {{ kometa_docker_tmdb_language }}
+  region: {{ kometa_docker_tmdb_region }}
+  cache_expiration: {{ kometa_docker_tmdb_cache_expiration }}
 
 {# Optional #}
 webhooks:
@@ -74,55 +74,55 @@ webhooks:
   run_end:
   changes:
 
-{% if pmm_docker_tautulli_url %}
+{% if kometa_docker_tautulli_url %}
 tautulli:
-  url: {{ pmm_docker_tautulli_url | default(omit) }}
-  apikey: {{ pmm_docker_tautulli_apikey | default(omit) }}
+  url: {{ kometa_docker_tautulli_url | default(omit) }}
+  apikey: {{ kometa_docker_tautulli_apikey | default(omit) }}
 {% endif %}
 
-{% if pmm_docker_omdb_apikey %}
+{% if kometa_docker_omdb_apikey %}
 omdb:
-  apikey: {{ pmm_docker_omdb_apikey }}
-  cache_expiration: {{ pmm_docker_omdb_cache_expiration }}
+  apikey: {{ kometa_docker_omdb_apikey }}
+  cache_expiration: {{ kometa_docker_omdb_cache_expiration }}
 {% endif %}
 
-{% if pmm_docker_mdblist_apikey %}
+{% if kometa_docker_mdblist_apikey %}
 mdblist:
-  apikey: {{ pmm_docker_mdblist_apikey }}
-  cache_expiration: {{ pmm_docker_mdblist_cache_expiration }}
+  apikey: {{ kometa_docker_mdblist_apikey }}
+  cache_expiration: {{ kometa_docker_mdblist_cache_expiration }}
 {% endif %}
 
-{% if pmm_docker_notifiarr_apikey %}
+{% if kometa_docker_notifiarr_apikey %}
 notifiarr:
-  apikey: {{ pmm_docker_notifiarr_apikey }}
+  apikey: {{ kometa_docker_notifiarr_apikey }}
 {% endif %}
 
-{% if pmm_docker_anidb_client %}
+{% if kometa_docker_anidb_client %}
 anidb:
-  client: {{ pmm_docker_anidb_client }}
-  version: {{ pmm_docker_anidb_version }}
-  language: {{ pmm_docker_anidb_language }}
-  cache_expiration: {{ pmm_docker_anidb_cache_expiration }}
-  username: {{ pmm_docker_anidb_username }}
-  password: {{ pmm_docker_anidb_password }}
+  client: {{ kometa_docker_anidb_client }}
+  version: {{ kometa_docker_anidb_version }}
+  language: {{ kometa_docker_anidb_language }}
+  cache_expiration: {{ kometa_docker_anidb_cache_expiration }}
+  username: {{ kometa_docker_anidb_username }}
+  password: {{ kometa_docker_anidb_password }}
 {% endif %}
 
-{% if pmm_docker_radarr %}
+{% if kometa_docker_radarr %}
 radarr:
-{{ pmm_docker_radarr }}
+{{ kometa_docker_radarr }}
 {% endif %}
 
-{% if pmm_docker_sonarr %}
+{% if kometa_docker_sonarr %}
 sonarr:
-{{ pmm_docker_sonarr }}
+{{ kometa_docker_sonarr }}
 {% endif %}
 
-{% if pmm_docker_trakt %}
+{% if kometa_docker_trakt %}
 trakt:
-{{ pmm_docker_trakt }}
+{{ kometa_docker_trakt }}
 {% endif %}
 
-{% if pmm_docker_mal %}
+{% if kometa_docker_mal %}
 mal:
-{{ pmm_docker_mal }}
+{{ kometa_docker_mal }}
 {% endif %}

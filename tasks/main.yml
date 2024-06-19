@@ -2,18 +2,18 @@
 - name: "Run general setup"
   ansible.builtin.import_tasks: "setup.yml"
   tags:
-    - "pmm"
-    - "pmm:setup"
+    - "kometa"
+    - "kometa:setup"
 
 - name: "Run network setup"
   ansible.builtin.import_tasks: "network.yml"
   tags:
-    - "pmm"
-    - "pmm:network"
-  when: "pmm_docker_network_create"
+    - "kometa"
+    - "kometa:network"
+  when: "kometa_docker_network_create"
 
 - name: "Create container"
   ansible.builtin.import_tasks: "container.yml"
   tags:
-    - "pmm"
-    - "pmm:docker"
+    - "kometa"
+    - "kometa:docker"

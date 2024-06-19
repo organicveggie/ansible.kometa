@@ -5,14 +5,14 @@
   become: true
 
   vars:
-    pmm_docker_name: "plex-meta-manager"
-    pmm_docker_volume_name: "plex-meta-manager"
-    pmm_docker_network: "plex-meta-manager"
+    kometa_docker_name: "kometa"
+    kometa_docker_volume_name: "kometa"
+    kometa_docker_network: "kometa"
 
   tasks:
     - name: "Get info on volume"
       community.docker.docker_volume_info:
-        name: "{{ pmm_docker_volume_name }}"
+        name: "{{ kometa_docker_volume_name }}"
       register: "_volume_info_data"
 
     - name: "Verify volume exists"
@@ -21,19 +21,19 @@
 
     - name: "Get info on default network"
       community.docker.docker_network_info:
-        name: "{{ pmm_docker_network }}"
+        name: "{{ kometa_docker_network }}"
       register: "_network_info"
 
     - name: "Verify default network exists"
       ansible.builtin.assert:
         that: "_network_info.exists"
 
-    - name: "Get info on container: {{ pmm_docker_name }}"
+    - name: "Get info on container: {{ kometa_docker_name }}"
       community.docker.docker_container_info:
-        name: "{{ pmm_docker_name }}"
+        name: "{{ kometa_docker_name }}"
       register: "container_info"
 
-    - name: "Verify container exists and is running: {{ pmm_docker_name }}"
+    - name: "Verify container exists and is running: {{ kometa_docker_name }}"
       ansible.builtin.assert:
         that:
           - "container_info.exists"

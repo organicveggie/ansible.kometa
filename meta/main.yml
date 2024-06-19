@@ -1,9 +1,9 @@
 ---
 galaxy_info:
-  role_name: "pmm_docker"
+  role_name: "kometa"
   author: "Sean Laurent"
   namespace: "organicveggie"
-  description: "Role to install Plex Meta Manager on Docker."
+  description: "Role to install Kometa on Docker."
 
   license: "license GPL-3.0-only"
   min_ansible_version: "2.13"
@@ -27,9 +27,7 @@ galaxy_info:
         - "jammy"
 
   galaxy_tags:
-    - "pmm"
-    - "metamanager"
-    - "plexmetamanager"
+    - "kometa"
     - "plex"
 
 dependencies: []

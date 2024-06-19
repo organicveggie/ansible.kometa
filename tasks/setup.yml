@@ -1,42 +1,42 @@
 ---
-- name: "Create Plex Meta Manager data directory"
-  when: "not pmm_docker_use_volumes"
+- name: "Create Kometa data directory"
+  when: "not kometa_docker_use_volumes"
   ansible.builtin.file:
-    name: "{{ pmm_docker_data_dir }}"
+    name: "{{ kometa_docker_data_dir }}"
     state: "directory"
     mode: "0770"
 
-- name: "Create Plex Meta Manager Docker volume"
-  when: "pmm_docker_use_volumes"
+- name: "Create Kometa Docker volume"
+  when: "kometa_docker_use_volumes"
   community.docker.docker_volume:
-    name: "{{ pmm_docker_volume_name }}"
+    name: "{{ kometa_docker_volume_name }}"
 
 - name: "Get info on Docker volume"
-  when: "pmm_docker_use_volumes"
+  when: "kometa_docker_use_volumes"
   community.docker.docker_volume_info:
-    name: "{{ pmm_docker_volume_name }}"
-  register: "pmm_docker_volume_info"
+    name: "{{ kometa_docker_volume_name }}"
+  register: "kometa_docker_volume_info"
 
 - name: "Build target path to Docker volume"
-  when: "pmm_docker_use_volumes"
+  when: "kometa_docker_use_volumes"
   ansible.builtin.set_fact:
-    fact_pmm_docker_conf_folder:
-      "{{ pmm_docker_volume_info['volume']['Mountpoint'] }}"
+    fact_kometa_docker_conf_folder:
+      "{{ kometa_docker_volume_info['volume']['Mountpoint'] }}"
 
 - name: "Build target path to conf folder for bind mount"
-  when: "not pmm_docker_use_volumes"
+  when: "not kometa_docker_use_volumes"
   ansible.builtin.set_fact:
-    fact_pmm_docker_conf_folder: "{{ pmm_docker_data_dir }}"
+    fact_kometa_docker_conf_folder: "{{ kometa_docker_data_dir }}"
 
 - name: "Create assets subfolder"
   ansible.builtin.file:
-    name: "{{ fact_pmm_docker_conf_folder }}/assets"
+    name: "{{ fact_kometa_docker_conf_folder }}/assets"
     state: "directory"
     mode: "0770"
 
 - name: "Create config file"
   ansible.builtin.template:
     src: "templates/config.yml.j2"
-    dest: "{{ fact_pmm_docker_conf_folder }}/config.yml"
+    dest: "{{ fact_kometa_docker_conf_folder }}/config.yml"
     mode: "0644"
-  register: _pmm_docker_config
+  register: _kometa_docker_config
