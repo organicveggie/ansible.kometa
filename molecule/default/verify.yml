@@ -7,7 +7,7 @@
   vars:
     kometa_docker_name: "kometa"
     kometa_docker_volume_name: "kometa"
-    kometa_docker_network: "kometa"
+    kometa_docker_network: "kometa-test"
 
   tasks:
     - name: "Get info on volume"

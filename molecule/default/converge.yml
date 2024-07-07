@@ -7,12 +7,37 @@
   become: true
 
   vars:
-    kometa_docker_network_create: true
     kometa_docker_plex_url: "http://192.168.1.12:32400"
     kometa_docker_plex_token: "fake-plex-token"
     kometa_docker_tautulli_url: "http://192.168.1.12:8181"
     kometa_docker_tautulli_apikey: "fake-tautulli-apikey"
     kometa_docker_tmdb_apikey: "fake-tmdb-apikey"
+    kometa_docker_network: "kometa-test"
+
+    kometa_networks:
+      - name: "{{ kometa_docker_network }}"
+        enable_ipv6: "false"
+        scope: "local"
+        internal: "no"
+        subnet: "172.101.42.0/24"
+        gateway: "172.101.42.1"
+
+    kometa_docker_extra_networks:
+      - name: "{{ kometa_docker_network }}"
+
+  pre_tasks:
+    - name: Create Docker networks
+      community.docker.docker_network:
+        name: "{{ item.name }}"
+        driver: "{{ item.driver | default(omit) }}"
+        enable_ipv6: "{{ item.enable_ipv6 | default(omit) }}"
+        internal: "{{ item.internal | default(omit) }}"
+        scope: "{{ item.scope | default(omit) }}"
+        ipam_config:
+          - subnet: "{{ item.subnet }}"
+            gateway: "{{ item.gateway }}"
+      loop: "{{ kometa_networks }}"
 
   roles:
     - "organicveggie.kometa"
+
