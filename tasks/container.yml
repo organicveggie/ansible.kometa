@@ -19,9 +19,9 @@
   ansible.builtin.set_fact:
     _kometa_docker_created_networks:
       - name: "{{ kometa_docker_network }}"
-        ipv4_address: "{{ _kometa_docker_network_ipv4 | default(omit) }}"
-        ipv6_address: "{{ _kometa_docker_network_ipv6 | default(omit) }}"
-        aliases: "{{ _kometa_docker_network_aliases | default(omit) }}"
+        ipv4_address: "{{ kometa_docker_network_ipv4 | default(omit) }}"
+        ipv6_address: "{{ kometa_docker_network_ipv6 | default(omit) }}"
+        aliases: "{{ kometa_docker_network_aliases | default(omit) }}"
   when: "kometa_docker_network_create"
 
 - name: "Create placeholder array for created network"
@@ -40,7 +40,6 @@
     image: "{{ kometa_docker_image_name }}:{{ kometa_docker_image_version }}"
     pull: true
     mounts: "{{ _kometa_docker_mount_list }}"
-    dns_servers: "{{ kometa_docker_dns_servers | default(omit) }}"
     env:
       "KOMETA_READ_ONLY_CONFIG": "{{ kometa_docker_config_read_only | default(omit) }}"
       "TZ": "{{ kometa_docker_timezone }}"
