@@ -163,9 +163,6 @@ kometa_docker_memory: "512M"
 # Override DNS servers.
 kometa_docker_dns_servers: null
 
-# Container restart policy.
-kometa_docker_restart_policy: "unless-stopped"
-
 # Command to execute when the container starts. See
 # https://kometa.wiki/en/latest/home/environmental.html for the list of
 # commands which Kometa supports.
