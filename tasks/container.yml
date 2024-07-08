@@ -34,18 +34,29 @@
     _kometa_docker_all_networks: >
       {{ _kometa_docker_created_networks + kometa_docker_extra_networks }}
 
+- name: "Define restart policy when configured to run-once"
+  ansible.builtin.set_fact:
+    _kometa_docker_restart_policy: "no"
+  when: "kometa_docker_run_once_only"
+
+- name: "Define restart policy when configured to run continuously"
+  ansible.builtin.set_fact:
+    _kometa_docker_restart_policy: "unless-stopped"
+  when: "not kometa_docker_run_once_only"
+
 - name: "Create Kometa Docker container"  # noqa: args[module]
   community.docker.docker_container:
     name: "{{ kometa_docker_name }}"
     image: "{{ kometa_docker_image_name }}:{{ kometa_docker_image_version }}"
     pull: true
     mounts: "{{ _kometa_docker_mount_list }}"
+    dns_servers: "{{ kometa_docker_dns_servers | default(omit) }}"
     env:
       "KOMETA_READ_ONLY_CONFIG": "{{ kometa_docker_config_read_only | default(omit) }}"
       "TZ": "{{ kometa_docker_timezone }}"
     network_mode: "{{ kometa_docker_network }}"
     networks: "{{ _kometa_docker_all_networks }}"
-    restart_policy: unless-stopped
+    restart_policy: "{{ _kometa_docker_restart_policy }}"
     restart: "{{ _kometa_docker_config.changed | default(false) }}"
     memory: "{{ kometa_docker_memory }}"
     cpus: "{{ kometa_docker_cpus }}"

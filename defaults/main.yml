@@ -7,6 +7,9 @@
 # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones.
 kometa_docker_timezone: "America/New_York"
 
+# Tells the Kometa container to run immediately and then exit.
+kometa_docker_run_once_only: false
+
 #####
 # Config settings
 #####
