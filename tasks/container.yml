@@ -52,7 +52,7 @@
     mounts: "{{ _kometa_docker_mount_list }}"
     dns_servers: "{{ kometa_docker_dns_servers | default(omit) }}"
     env:
-      "KOMETA_READ_ONLY_CONFIG": "{{ kometa_docker_config_read_only | default(omit) }}"
+      "KOMETA_READ_ONLY_CONFIG": "{{ kometa_docker_config_read_only | string | default(omit) }}"
       "TZ": "{{ kometa_docker_timezone }}"
     network_mode: "{{ kometa_docker_network }}"
     networks: "{{ _kometa_docker_all_networks }}"
