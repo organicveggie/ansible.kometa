@@ -34,6 +34,18 @@
     _kometa_docker_all_networks: >
       {{ _kometa_docker_created_networks + kometa_docker_extra_networks }}
 
+- name: "Create array for standard environment variables"
+  ansible.builtin.set_fact:
+    _kometa_docker_std_env_vars:
+      "KOMETA_READ_ONLY_CONFIG": "{{ kometa_docker_config_read_only | string | default(omit) }}"
+      "KOMETA_RUN": "{{ kometa_docker_run_once_only | string | default(omit) }}"
+      "TZ": "{{ kometa_docker_timezone }}"   
+
+- name: "Define all environment variables for this container"
+  ansible.builtin.set_fact:
+    _kometa_docker_env_vars: >
+      {{ _kometa_docker_std_env_vars | ansible.builtin.combine(kometa_docker_extra_env_vars) }}
+
 - name: "Define restart policy when configured to run-once"
   ansible.builtin.set_fact:
     _kometa_docker_restart_policy: "no"
@@ -50,10 +62,8 @@
     image: "{{ kometa_docker_image_name }}:{{ kometa_docker_image_version }}"
     pull: true
     mounts: "{{ _kometa_docker_mount_list }}"
-    dns_servers: "{{ kometa_docker_dns_servers | default(omit) }}"
-    env:
-      "KOMETA_READ_ONLY_CONFIG": "{{ kometa_docker_config_read_only | string | default(omit) }}"
-      "TZ": "{{ kometa_docker_timezone }}"
+    # dns_servers: "{{ kometa_docker_dns_servers | default(omit) }}"
+    env: "{{ _kometa_docker_env_vars}}"
     network_mode: "{{ kometa_docker_network }}"
     networks: "{{ _kometa_docker_all_networks }}"
     restart_policy: "{{ _kometa_docker_restart_policy }}"

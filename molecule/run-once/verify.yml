@@ -1,0 +1,43 @@
+---
+- name: "Verify"
+  hosts: "all"
+  gather_facts: false
+  become: true
+
+  vars:
+    kometa_docker_name: "kometa"
+    kometa_docker_volume_name: "kometa"
+    kometa_docker_network: "kometa-test"
+
+  tasks:
+    - name: "Get info on volume"
+      community.docker.docker_volume_info:
+        name: "{{ kometa_docker_volume_name }}"
+      register: "_volume_info_data"
+
+    - name: "Verify volume exists"
+      ansible.builtin.assert:
+        that: "_volume_info_data.exists"
+
+    - name: "Get info on network"
+      community.docker.docker_network_info:
+        name: "{{ kometa_docker_network }}"
+      register: "_network_info"
+
+    - name: "Verify network exists"
+      ansible.builtin.assert:
+        that: "_network_info.exists"
+
+    - name: "Get info on container: {{ kometa_docker_name }}"
+      community.docker.docker_container_info:
+        name: "{{ kometa_docker_name }}"
+      register: "container_info"
+
+    - ansible.builtin.debug:
+        msg: "{{ container_info.container['State'] }}"
+
+    - name: "Verify container exists and is no longer running: {{ kometa_docker_name }}"
+      ansible.builtin.assert:
+        that:
+          - "container_info.exists"
+          - "container_info.container['State']['Status'] == 'exited'"

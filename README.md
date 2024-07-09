@@ -42,9 +42,6 @@ kometa_docker_image_name: "kometateam/kometa"
 # Specific Docker image version to use for the container.
 kometa_docker_image_version: "latest"
 
-# TCP port number to expose to handle HTTP traffic.
-kometa_docker_web_port: "8181"
-
 # Number of vCPUs to allocate to the container.
 kometa_docker_cpus: "1"
 

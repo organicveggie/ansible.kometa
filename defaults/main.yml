@@ -158,11 +158,13 @@ kometa_docker_cpus: "1"
 kometa_docker_memory: "512M"
 
 # Override DNS servers.
-kometa_docker_dns_servers: null
-
+# kometa_docker_dns_servers: null
 
 # Prevent Kometa from modifying the config.yml.
-kometa_docker_config_read_only: null
+kometa_docker_config_read_only: "true"
+
+# Extra environment variables to pass to Kometa
+kometa_docker_extra_env_vars: {}
 
 #####
 # Docker networks
