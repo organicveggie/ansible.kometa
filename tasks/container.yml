@@ -60,7 +60,6 @@
     restart: "{{ _kometa_docker_config.changed | default(false) }}"
     memory: "{{ kometa_docker_memory }}"
     cpus: "{{ kometa_docker_cpus }}"
-    command: "{{ kometa_docker_run_command | default(omit) }}"
     command_handling: "correct"
     container_default_behavior: "no_defaults"
     auto_remove: false
